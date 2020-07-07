@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.button {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  background-color: aquamarine;
+  font: inherit;
+  border: 1px solid rgba(187, 255, 0, 0.39);
+  padding: 8px;
+}
