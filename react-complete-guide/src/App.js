@@ -30,17 +30,17 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
         <button className ="button" onClick={() => this.switchNameHandler('Button Person')}>Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, 'paragraph person')}> 
-          Hobbies: Racing
-        </Person>
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler /* more recommended */ }>
-        </Person>
+          <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age}
+            click={this.switchNameHandler.bind(this, 'paragraph person')}> 
+            Hobbies: Racing
+          </Person>
+          <Person 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age}
+            changed={this.nameChangedHandler /* more recommended */ }>
+          </Person>
       </div>
     );
   }
