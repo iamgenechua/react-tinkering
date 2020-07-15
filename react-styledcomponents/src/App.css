@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+}
+
+/* .button {
+  background-color: aquamarine;
+  font: inherit;
+  border: 1px solid rgba(187, 255, 0, 0.39);
+  padding: 8px;
+} */
+
+.red {
+  color: firebrick;
+}
+
+.bold {
+  font-weight: bold;
+}
