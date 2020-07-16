@@ -2,14 +2,14 @@
   text-align: center;
 }
 
-.button {
+.Button {
   background-color: aquamarine;
   font: inherit;
   border: 1px solid rgba(187, 255, 0, 0.39);
   padding: 8px;
 }
 
-.button:hover {
+.Button:hover {
   background-color: lightgoldenrodyellow;
   color: black;
 }
@@ -20,4 +20,12 @@
 
 .bold {
   font-weight: bold;
+}
+
+.Button.Red {
+  background-color: red;
+}
+
+.Button.Red:hover {
+  background-color: paleturquoise;
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 // everything between the double tics must be written in css style. e.g. use background-color instead of backgroundColor
@@ -47,6 +46,8 @@ class App extends Component {
   render() {
     let persons = null;
 
+    let btnClass = [classes.Button];
+
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -61,24 +62,26 @@ class App extends Component {
         })}
         </div>
       );
+
+      btnClass.push(classes.Red); // will get .button.Red
     }
 
-    let classes = []; // turn array of strings into one string called 'red bold'
+    let assignedClasses = []; // turn array of strings into one string called 'red bold'
     if (this.state.persons.length < 3) {
-      classes.push('red'); // classes = ['red']
+      assignedClasses.push(classes.red); // classes = ['red']
     }
 
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); // classes = ['red', 'bold']
+      assignedClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
 
     // style is a inbuilt variable
     return (
-      <div className="App">
+      <div className={assignedClasses.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>If less than 3 people, turn red. If less than 2 people, turn bold and red</p>
-        <button className ="button" onClick={this.togglePersonsHandler}>Toggle Name</button>
+        <p className={assignedClasses.join(' ')}>If less than 3 people, turn red. If less than 2 people, turn bold and red</p>
+        <button className ={btnClass.join(' ')} onClick={this.togglePersonsHandler}>Toggle Name</button>
           {persons}
       </div>
     );
