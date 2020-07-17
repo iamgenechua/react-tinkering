@@ -2,6 +2,8 @@ import React from 'react';
 import './Person.css';
 
 const person = (props) => {
+
+    // onChange accepts an event (nameChangedHandler)
     return (
         <div className="Person">
             <p onClick={props.click}>I'm {props.name} and I am {props.age} years old</p>
