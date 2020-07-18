@@ -5,7 +5,12 @@ import Cockpit from '../components/Cockpit/Cockpit'
 
 
 class App extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
+
+  state = { // initialise state outside of constructor as part of modern JS syntax
     persons: [
       {id: '1', name: 'Jim', age: 18},
       {id: '2', name: 'Nicole', age: 32},
@@ -14,6 +19,24 @@ class App extends Component {
     ],
     otherState: 'additional values',
     showPersons: false
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true; // returning false would prevent the update of props and not let the Person element be generated
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
   }
 
   nameChangedHandler = (event, id) => {
@@ -26,10 +49,10 @@ class App extends Component {
     }
 
     person.name = event.target.value; // change the name of the person with the value typed in
-    const persons = [this.state.persons]; // point to the persons object
+    const persons = [...this.state.persons]; // point to the array of persons
     persons[personIndex] = person; // replace the person with the new person in the persons object
 
-    this.setState({persons: person}); // officially set the state
+    this.setState({persons: persons}); // officially update the state
   }
 
   deletePersonHandler = (personIndex) => {
@@ -44,18 +67,24 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render')
     let persons = null;
 
     if (this.state.showPersons) {
-      persons = <Persons
+      persons = (
+      <div>
+        <Persons
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler} />; 
+      </div>
+      )
     }
 
     return (
       <div className='App'>
         <Cockpit 
+          title={this.props.appTitle}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}
