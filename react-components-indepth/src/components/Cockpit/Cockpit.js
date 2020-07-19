@@ -8,8 +8,11 @@ const cockpit = (props) => {
         // Faking a http request
         setTimeout(() => {
             alert('saved data to the cloud');
-        })
-    }, [props.persons]); // will only execute if persons change. 
+        }, 1000);
+        return () => {
+            console.log('[Cockpit.js] cleanup work in useEffect'); // runs after useEffect but before render
+        }
+    }, []); // [props.persons] will only execute if persons change. 
     // IF you only want to execute it when component runs first time,
     // just include a []. (empty array)
 
@@ -20,10 +23,10 @@ const cockpit = (props) => {
         btnClass = 'Red';
     }
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
         assignedClasses.push('red'); // assignedClasses = ['red'];
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
         assignedClasses.push('bold'); // assignedClasses = ['bold];
     }
 
@@ -40,4 +43,4 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+export default React.memo(cockpit); // use memoisation so that re-render only happens when props change
