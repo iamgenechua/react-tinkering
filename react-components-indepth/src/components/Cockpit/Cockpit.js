@@ -1,12 +1,15 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react'; //useContext hook allows you to have access to your context in your func component 
 import './Cockpit.css';
+import AuthContext from '../../context/auth-context';
 
 const cockpit = (props) => {
 
     const toggleBtnRef = useRef(null); // useRef hook
+    const authContext = useContext(AuthContext);
 
     useEffect(() => { // useEffect runs after every render cycle
         console.log('[Cockpit.js] useEffect');
+        console.log(authContext.authenticated);
 
         // Faking a http request
         setTimeout(() => {
@@ -43,6 +46,10 @@ const cockpit = (props) => {
                 className={btnClass}
                 onClick={props.clicked}
             >Toggle Persons</button>
+            <button onClick={authContext.login}>
+                    Log In
+            </button>
+            
         </div>
         
     );
