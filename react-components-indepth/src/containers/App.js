@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Persons from '../components/Persons/Persons';
-import Cockpit from '../components/Cockpit/Cockpit'
+import Cockpit from '../components/Cockpit/Cockpit';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux'
 
 
 class App extends Component {
@@ -18,7 +20,8 @@ class App extends Component {
       {id: '4', name: 'Harry', age: 91}
     ],
     otherState: 'additional values',
-    showPersons: false
+    showPersons: false,
+    changeCounter: 0
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -52,7 +55,12 @@ class App extends Component {
     const persons = [...this.state.persons]; // point to the array of persons
     persons[personIndex] = person; // replace the person with the new person in the persons object
 
-    this.setState({persons: persons}); // officially update the state
+    this.setState((prevState, props) => { // first arg is old state, second arg is curr props
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1 // DO NOT use this.changeCounter + 1
+      };      
+    }); // officially update the state
   }
 
   deletePersonHandler = (personIndex) => {

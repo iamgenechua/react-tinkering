@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import './Person.css';
 import Aux from '../../../hoc/Aux';
+import PropTypes from 'prop-types';
 
 class Person extends Component {
     render () {
@@ -14,6 +15,13 @@ class Person extends Component {
             </Fragment>
         )
     }
+};
+
+Person.propTypes = {
+    click: PropTypes.func, // i expect to get a function
+    name: PropTypes.string, // i expect name to be a string
+    age: PropTypes.number,
+    changed: PropTypes.func
 };
 
 export default Person;
