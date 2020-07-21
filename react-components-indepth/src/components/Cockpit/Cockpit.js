@@ -1,14 +1,18 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import './Cockpit.css';
 
 const cockpit = (props) => {
-    useEffect(() => {
+
+    const toggleBtnRef = useRef(null); // useRef hook
+
+    useEffect(() => { // useEffect runs after every render cycle
         console.log('[Cockpit.js] useEffect');
 
         // Faking a http request
         setTimeout(() => {
             alert('saved data to the cloud');
         }, 1000);
+        toggleBtnRef.current.click(); // auto click the toggle button upon refresh
         return () => {
             console.log('[Cockpit.js] cleanup work in useEffect'); // runs after useEffect but before render
         }
@@ -35,6 +39,7 @@ const cockpit = (props) => {
             <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>Turns red when less than 3, also turns bold when less than 2</p>
             <button
+                ref = {toggleBtnRef}
                 className={btnClass}
                 onClick={props.clicked}
             >Toggle Persons</button>
